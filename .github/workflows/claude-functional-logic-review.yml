@@ -7,6 +7,12 @@ on:
         required: false
         type: string
         default: "25"
+      job_title:
+        required: false
+        type: string
+      job_user:
+        required: false
+        type: string
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN:
         required: true
@@ -14,7 +20,7 @@ on:
 jobs:
   claude-functional-logic-review:
     if: |
-      contains(github.event.pull_request.title, '[functional-logic-review]')
+      contains(job_title, '[functional-logic-review]')
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -7,7 +7,7 @@ on:
 jobs:
   claude-security-performance-review:
     if: |
-      contains(github.event.pull_request.title, '[security-review]')
+      contains(job_title, '[security-review]')
     runs-on: ubuntu-latest
     permissions:
       contents: write

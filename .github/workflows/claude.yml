@@ -7,6 +7,12 @@ on:
         required: false
         type: string
         default: "25"
+      job_title:
+        required: false
+        type: string
+      job_user:
+        required: false
+        type: string
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN:
         required: true

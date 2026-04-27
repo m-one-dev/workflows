@@ -7,6 +7,12 @@ on:
         required: false
         type: string
         default: "25"
+      job_title:
+        required: false
+        type: string
+      job_user:
+        required: false
+        type: string
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN:
         required: true
@@ -14,9 +20,9 @@ on:
 jobs:
   claude-context-maintenance-review:
     if: |
-      !contains(github.event.pull_request.title, '[skip-review]') &&
-      !contains(github.event.pull_request.title, '--skip-claude') &&
-      github.event.pull_request.user.login != 'dependabot[bot]'
+      !contains(job_title, '[skip-review]') &&
+      !contains(job_title, '--skip-claude') &&
+      job_user != 'dependabot[bot]'
 
     runs-on: ubuntu-latest
     permissions:
