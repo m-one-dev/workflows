@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "ESLint": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["@eslint/mcp@latest"]
+		},
+    "Database": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://localhost/database_name"
+      ]
+    },
+      "cursor-rules-mcp": {
+          "command": "npx",
+          "args": [
+              "-y",
+              "cursor-rules-mcp"
+          ]
+      }
+  }
+}
