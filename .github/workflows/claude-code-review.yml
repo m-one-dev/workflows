@@ -23,9 +23,9 @@ jobs:
   claude-review:
     # Optional: Filter by PR author
     if: |
-      !contains(job_title, '[skip-review]') &&
-      !contains(job_title, '--skip-claude') &&
-      job_user != 'dependabot[bot]'
+      !contains(inputs.job_title, '[skip-review]') &&
+      !contains(inputs.job_title, '--skip-claude') &&
+      inputs.job_user != 'dependabot[bot]'
 
     runs-on: ubuntu-latest
     permissions:
