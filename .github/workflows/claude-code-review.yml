@@ -36,16 +36,12 @@ jobs:
       actions: read
 
     steps:
-      - name: Fix submodule URLs
-        run: |
-          git config --global url."https://x-access-token:${{ secrets.PAT }}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://x-access-token:${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           submodules: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
 
       - name: Run Claude Code Review
         id: claude-review
