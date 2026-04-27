@@ -20,7 +20,7 @@ on:
 jobs:
   claude-functional-logic-review:
     if: |
-      contains(job_title, '[functional-logic-review]')
+      contains(inputs.job_title, '[functional-logic-review]')
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -21,12 +21,12 @@ jobs:
   claude-code-quality-review:
     # Optional: Filter by PR author
     if: |
-      !contains(job_title, '[skip-review]') &&
-      !contains(job_title, '--skip-claude') &&
-      job_user != 'dependabot[bot]'
+      !contains(inputs.job_title, '[skip-review]') &&
+      !contains(inputs.job_title, '--skip-claude') &&
+      inputs.job_user != 'dependabot[bot]'
     # if: |
-    #   job_user == 'external-contributor' ||
-    #   job_user == 'new-developer' ||
+    #   inputs.job_user == 'external-contributor' ||
+    #   inputs.job_user == 'new-developer' ||
     #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
 
     runs-on: ubuntu-latest
