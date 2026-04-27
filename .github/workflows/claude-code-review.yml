@@ -16,7 +16,7 @@ on:
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN:
         required: true
-      GITHUB_PAT:
+      PAT:
         required: true
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Fix submodule URLs
         run: |
-          git config --global url."https://x-access-token:${{ secrets.GITHUB_PAT }}@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://x-access-token:${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
