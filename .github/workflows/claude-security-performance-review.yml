@@ -1,13 +1,28 @@
 name: Claude Security & Performance Review
 
 on:
-  pull_request:
-    types: [opened, synchronize, ready_for_review, reopened]
+  workflow_call:
+    inputs:
+      node-version:
+        required: false
+        type: string
+        default: "25"
+      job_title:
+        required: false
+        type: string
+      job_user:
+        required: false
+        type: string
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN:
+        required: true
+      PAT:
+        required: true
 
 jobs:
   claude-security-performance-review:
     if: |
-      contains(github.event.pull_request.title, '[security-review]')
+      contains(inputs.job_title, '[security-review]')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -17,6 +32,10 @@ jobs:
       actions: read
 
     steps:
+      - name: Fix submodule URLs
+        run: |
+          git config --global url."https://x-access-token:${{ secrets.PAT }}@github.com/".insteadOf "git@github.com:"
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:

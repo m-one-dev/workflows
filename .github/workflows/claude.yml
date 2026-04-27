@@ -16,6 +16,8 @@ on:
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN:
         required: true
+      PAT:
+        required: true
 
 jobs:
   claude:
@@ -32,6 +34,10 @@ jobs:
       id-token: write
       actions: read # Required for Claude to read CI results on PRs
     steps:
+      - name: Fix submodule URLs
+        run: |
+          git config --global url."https://x-access-token:${{ secrets.PAT }}@github.com/".insteadOf "git@github.com:"
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
